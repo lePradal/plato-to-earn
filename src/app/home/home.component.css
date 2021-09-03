@@ -1,0 +1,20 @@
+.home {
+    float: right;
+    width: 70%;
+    overflow: hidden;
+}
+
+.aside {
+    z-index: -1;
+    top: 50px;
+    float: left;
+    position: absolute;
+    height: 93%;
+    width: 27%;
+    padding: 27px;
+    padding-top: 59.7px;
+    border-right: 1px solid #00000066;
+    box-shadow: #00000066 0.1px 0px 0.8px;
+    overflow: hidden;
+
+}
