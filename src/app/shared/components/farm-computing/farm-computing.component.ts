@@ -45,7 +45,7 @@ export class FarmComputingComponent implements OnInit, OnDestroy {
       numberOfChars: [1, [Validators.required, Validators.min(1), Validators.max(100)]],
       dracoInDolars: [1, [Validators.required, Validators.min(0.00001)]],
       dolarQuote: [5, [Validators.required, Validators.min(0.01)]],
-      boostPercent: [0, [Validators.required]],
+      boostPercent: [0, []],
     });
     
     this.averageDS = 0;
