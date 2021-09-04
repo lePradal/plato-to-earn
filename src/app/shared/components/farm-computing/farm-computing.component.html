@@ -41,6 +41,19 @@
             </div>
             <div class="col-3"></div>
         </div>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-4 mb-3">
+                <label for="boostPercentInput" class="form-label">Farm Boost [%]:</label>
+                <input type="number" class="form-control" id="boostPercentInput" step="0.01"formControlName="boostPercent" [ngClass]="{'is-invalid':farmForm.get('boostPercent')?.invalid}">
+            </div>
+            <!-- <div class="col-4 mb-3">
+                <label for="dolarQuoteInput" class="form-label">Cotação do dólar:</label>
+                <input type="number" readonly class="form-control" id="dolarQuoteInput" max="100" min="1" formControlName="dolarQuote" [ngClass]="{'is-invalid':farmForm.get('dolarQuote')?.invalid}">
+            </div>
+            <div class="col-3"></div> -->
+        </div>
       </form>
 </div>
 

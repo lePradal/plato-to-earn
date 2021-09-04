@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { interval, Observable, Subscription } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { mines } from 'src/config/mines.config';
   templateUrl: './farm-computing.component.html',
   styleUrls: ['./farm-computing.component.css']
 })
-export class FarmComputingComponent implements OnInit {
+export class FarmComputingComponent implements OnInit, OnDestroy {
 
   public timeInterval: Subscription = new Subscription();
 
@@ -25,6 +25,7 @@ export class FarmComputingComponent implements OnInit {
   public draco: number;
   public dolar: number;
   public real: number;
+  public boost: number;
 
   public dolarQuoteOberservable: Observable<number>;
 
@@ -44,6 +45,7 @@ export class FarmComputingComponent implements OnInit {
       numberOfChars: [1, [Validators.required, Validators.min(1), Validators.max(100)]],
       dracoInDolars: [1, [Validators.required, Validators.min(0.00001)]],
       dolarQuote: [5, [Validators.required, Validators.min(0.01)]],
+      boostPercent: [0, [Validators.required]],
     });
     
     this.averageDS = 0;
@@ -54,6 +56,7 @@ export class FarmComputingComponent implements OnInit {
     this.draco = 0;
     this.dolar = 0;
     this.real = 0;
+    this.boost = 1;
   }
 
   public ngOnInit(): void {
@@ -94,8 +97,9 @@ export class FarmComputingComponent implements OnInit {
     this.hoursPerDay = this.farmForm.get('farmHoursPerDay')?.value;
     this.characters = this.farmForm.get('numberOfChars')?.value;
     this.daysPerMonth = this.farmForm.get('farmDaysPerMonth')?.value;
+    this.boost = 1 + (this.farmForm.get('boostPercent')?.value / 100);
 
-    this.darkSteel = this.averageDS * 6 * 60 * this.hoursPerDay * this.characters;
+    this.darkSteel = this.averageDS * 6 * 60 * this.hoursPerDay * this.characters * this.boost;
     this.draco = this.darkSteel / 100000;
     this.dolar = this.draco * this.farmForm.get('dracoInDolars')?.value;
     this.real = this.dolar * this.farmForm.get('dolarQuote')?.value;
@@ -132,6 +136,10 @@ export class FarmComputingComponent implements OnInit {
 
   public quoteDolar() {
     return this.coinService.getCoinQuote()
+  }
+
+  public ngOnDestroy() {
+    this.farmForm.reset();
   }
 
 }

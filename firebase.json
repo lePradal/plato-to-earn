@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "",
+    "public": "dist/play-to-earn",
     "ignore": [
       "firebase.json",
       "**/.*",
