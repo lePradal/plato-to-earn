@@ -1,0 +1,33 @@
+<div  *ngIf="formValid">
+    <div class="row mt-5">
+        <div class="col-1"></div>
+        <div class="col-8">
+            <h2>Resultados:</h2>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-1"></div>
+        <div class="col-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col"><img class="result-icon" src="../../../../assets/darksteel.png"></th>
+                        <th scope="col"><img class="result-icon" src="../../../../assets/draco.png"></th>
+                        <th scope="col"><img class="result-icon" src="../../../../assets/dolar.png"></th>
+                        <th scope="col"><img class="result-icon" src="../../../../assets/real.png"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let result of results">
+                        <th scope="row">{{result.title}}</th>
+                        <td>{{result.darkSteel | number: '1.0-0'}}</td>
+                        <td>{{result.draco | number: '1.2-2'}}</td>
+                        <td>{{result.dolar | number: '1.2-2'}} U$D</td>
+                        <td>{{result.real  | number: '1.2-2'}} R$</td>
+                    </tr>
+                </tbody>
+          </table>
+        </div>
+    </div>
+</div>

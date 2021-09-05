@@ -50,3 +50,5 @@
     --bs-body-color: #212529;
     --bs-body-bg: #fff;
   }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

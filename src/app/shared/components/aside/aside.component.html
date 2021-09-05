@@ -1,0 +1,10 @@
+<div class="aside">
+    <div class="container">
+        <form>
+            <div *ngFor="let coin of coins" class="row">
+                <label for="farmHoursPerDayInput" class="form-label mb-0">{{coin.name.split('/')[0]}}</label>
+                <input type="text" class="form-control mb-2" id="farmHoursPerDayInput"  [value]="(coin.ask | number: '1.2-2') + ' R$'">
+            </div>
+        </form>
+    </div>
+</div>

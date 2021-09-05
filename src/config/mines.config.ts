@@ -22,7 +22,7 @@ export const mines: readonly Mine[] = Object.freeze([
     {
         index: 4,
         color: 'Dourada',
-        averageDS: 260,  
+        averageDS: 180,
     },
 ]);
 

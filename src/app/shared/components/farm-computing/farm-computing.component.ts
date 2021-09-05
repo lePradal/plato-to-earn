@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { interval, Observable, Subscription } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 import { CoinService } from 'src/app/services/coin-service.service';
 import { mines } from 'src/config/mines.config';
+import { TooltipPosition } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-farm-computing',
@@ -11,6 +12,9 @@ import { mines } from 'src/config/mines.config';
   styleUrls: ['./farm-computing.component.css']
 })
 export class FarmComputingComponent implements OnInit, OnDestroy {
+
+  positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
+  position = new FormControl(this.positionOptions[0]);
 
   public timeInterval: Subscription = new Subscription();
 
@@ -26,6 +30,9 @@ export class FarmComputingComponent implements OnInit, OnDestroy {
   public dolar: number;
   public real: number;
   public boost: number;
+  public cicle: number;
+  public CICLE_ERROR: number = 0.4;
+  public derby: number;
 
   public dolarQuoteOberservable: Observable<number>;
 
@@ -46,6 +53,8 @@ export class FarmComputingComponent implements OnInit, OnDestroy {
       dracoInDolars: [1, [Validators.required, Validators.min(0.00001)]],
       dolarQuote: [5, [Validators.required, Validators.min(0.01)]],
       boostPercent: [0, []],
+      farmCicle: [10, [Validators.required, Validators.max(10), Validators.min(1)]],
+      derby: [100000, [Validators.required, Validators.max(1000000), Validators.min(100000)]],
     });
     
     this.averageDS = 0;
@@ -57,6 +66,8 @@ export class FarmComputingComponent implements OnInit, OnDestroy {
     this.dolar = 0;
     this.real = 0;
     this.boost = 1;
+    this.cicle = 0;
+    this.derby = 0;
   }
 
   public ngOnInit(): void {
@@ -86,8 +97,6 @@ export class FarmComputingComponent implements OnInit, OnDestroy {
     });
   }
 
-
-
   public calculate() {
     if (this.farmForm.invalid) {
       return;
@@ -98,9 +107,11 @@ export class FarmComputingComponent implements OnInit, OnDestroy {
     this.characters = this.farmForm.get('numberOfChars')?.value;
     this.daysPerMonth = this.farmForm.get('farmDaysPerMonth')?.value;
     this.boost = 1 + (this.farmForm.get('boostPercent')?.value / 100);
+    this.cicle = this.farmForm.get('farmCicle')?.value;
+    this.derby = this.farmForm.get('derby')?.value;
 
-    this.darkSteel = this.averageDS * 6 * 60 * this.hoursPerDay * this.characters * this.boost;
-    this.draco = this.darkSteel / 100000;
+    this.darkSteel = this.averageDS * (60 / this.cicle - this.CICLE_ERROR) * 60 * this.hoursPerDay * this.characters * this.boost;
+    this.draco = this.darkSteel / this.derby;
     this.dolar = this.draco * this.farmForm.get('dracoInDolars')?.value;
     this.real = this.dolar * this.farmForm.get('dolarQuote')?.value;
 
@@ -143,12 +154,3 @@ export class FarmComputingComponent implements OnInit, OnDestroy {
   }
 
 }
-
-interface Result {
-  title: string,
-  darkSteel: number,
-  draco: number,
-  dolar: number,
-  real: number,
-}
-

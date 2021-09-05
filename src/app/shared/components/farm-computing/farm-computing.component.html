@@ -46,47 +46,45 @@
             <div class="col-1"></div>
             <div class="col-4 mb-3">
                 <label for="boostPercentInput" class="form-label">Farm Boost [%]:</label>
+                <mat-icon
+                        mat-raised-button
+                        matTooltip="Aumento de ganho na mineração de Dark Steel.
+                        Boost dado ao evoluir a 'Mina' em 'Conquista'."
+                        matTooltipPosition="right">info_outline
+                    </mat-icon>
                 <input type="number" class="form-control" id="boostPercentInput" step="0.01"formControlName="boostPercent" [ngClass]="{'is-invalid':farmForm.get('boostPercent')?.invalid}">
             </div>
+            <div class="col-4 mb-3">
+                <label for="farmCicleInput" class="form-label">Ciclo de coleta:</label>
+                <mat-icon
+                        mat-raised-button
+                        matTooltip="Tempo em segundos em que o ciclo de mineração ou recolhimento ocorre."
+                        matTooltipPosition="right">info_outline
+                    </mat-icon>
+                <input type="number" class="form-control" id="farmCicleInput" max="10" min="1" formControlName="farmCicle" [ngClass]="{'is-invalid':farmForm.get('farmCicle')?.invalid}">
+            </div>
+            <div class="col-3"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-4 mb-3">
+                <label for="derbyInput" class="form-label">Derby:
+                    <mat-icon
+                        mat-raised-button
+                        matTooltip="Taxa de câmbio de Dark Steel por DRACO."
+                        matTooltipPosition="right">info_outline
+                    </mat-icon>
+                </label>
+                <input type="number" class="form-control" id="derbyInput" formControlName="derby" [ngClass]="{'is-invalid':farmForm.get('derby')?.invalid}">
+            </div>
             <!-- <div class="col-4 mb-3">
-                <label for="dolarQuoteInput" class="form-label">Cotação do dólar:</label>
-                <input type="number" readonly class="form-control" id="dolarQuoteInput" max="100" min="1" formControlName="dolarQuote" [ngClass]="{'is-invalid':farmForm.get('dolarQuote')?.invalid}">
+                <label for="farmCicleInput" class="form-label">Tempo de ciclo de coleta [seg]:</label>
+                <input type="number" class="form-control" id="farmCicleInput" max="10" min="1" formControlName="farmCicle" [ngClass]="{'is-invalid':farmForm.get('farmCicle')?.invalid}">
             </div>
             <div class="col-3"></div> -->
         </div>
       </form>
 </div>
 
-<div *ngIf="farmForm.valid">
-    <div class="row mt-5">
-        <div class="col-1"></div>
-        <div class="col-8">
-            <h5>Resultados:</h5>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col-1"></div>
-        <div class="col-8">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col"><img class="result-icon" src="../../../../assets/darksteel.png"></th>
-                        <th scope="col"><img class="result-icon" src="../../../../assets/draco.png"></th>
-                        <th scope="col"><img class="result-icon" src="../../../../assets/dolar.png"></th>
-                        <th scope="col"><img class="result-icon" src="../../../../assets/real.png"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let result of results">
-                        <th scope="row">{{result.title}}</th>
-                        <td>{{result.darkSteel | number: '1.0-0'}}</td>
-                        <td>{{result.draco | number: '1.2-2'}}</td>
-                        <td>{{result.dolar | number: '1.2-2'}} U$D</td>
-                        <td>{{result.real  | number: '1.2-2'}} R$</td>
-                    </tr>
-                </tbody>
-          </table>
-        </div>
-    </div>
-</div>
+<app-results [formValid]="farmForm.valid" [results]="results"></app-results>
