@@ -1,0 +1,94 @@
+<div class="container mt-5">
+    <form [formGroup]="slpForm">
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-5 mb-3">
+                <label for="trophiesRangeIndexSelect" class="form-label">Quant. de Troféis:</label>
+                <select id="trophiesRangeIndexSelect" name="trophiesRangeIndex" class="form-select" formControlName="trophiesRangeIndex">
+                    <option *ngFor="let range of slp.ranges" [value]="range.index" [selected]="range.index == 0">{{range.minTrophy + ' ~ ' + range.maxTrophy}}</option>
+                </select>
+            </div>
+            <div class="col-5 mb-3">
+                <label for="pvpWinsInput" class="form-label">Vitórias no PvP:</label>
+                <input type="number" class="form-control" id="pvpWinsInput" max="20" min="0" formControlName="pvpWins" [ngClass]="{'is-invalid':slpForm.get('pvpWins')?.invalid}">
+            </div>
+            <!-- <div class="col-1"></div> -->
+        </div>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-5 mb-3">
+                <label for="slpInDolarsInput" class="form-label">Cotação SLP:</label>
+                <a class="nav-link a-icon" target="_blank" rel="noopener noreferrer" aria-current="page" href="https://coinmarketcap.com/pt-br/currencies/smooth-love-potion/">
+                <mat-icon
+                    mat-raised-button
+                    matTooltip="Visite Coint MarketCap para verificar a cotação atual do SLP."
+                    matTooltipPosition="right">info_outline
+                </mat-icon>
+                </a>
+                <div class="input-group col-4 mb-3">
+                    <input type="number" class="form-control" id="slpInDolarsInput" min="0.00001" formControlName="slpInDolars" [ngClass]="{'is-invalid':slpForm.get('slpInDolars')?.invalid}">
+                    <span class="input-group-text">U$D</span>
+                </div>
+            </div>
+
+            
+            <div class="col-5 mb-3">
+                <label for="dolarQuoteInput" class="form-label">Cotação do dólar:</label>
+                <div class="input-group col-4 mb-3">
+                    <input type="number" readonly class="form-control" id="dolarQuoteInput" max="100" min="1" formControlName="dolarQuote" [ngClass]="{'is-invalid':slpForm.get('dolarQuote')?.invalid}">
+                    <span class="input-group-text">R$</span>
+                </div>
+            </div>
+            <!-- <div class="col-1"></div> -->
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-1"></div>
+            <div class="col-4 mb-3">
+                <label for="boostPercentInput" class="form-label">Farm Boost [%]:</label>
+                <mat-icon
+                        mat-raised-button
+                        matTooltip="Aumento de ganho na mineração de Dark Steel.
+                        Boost dado ao evoluir a 'Mina' em 'Conquista'."
+                        matTooltipPosition="right">info_outline
+                    </mat-icon>
+                <input type="number" class="form-control" id="boostPercentInput" step="0.01"formControlName="boostPercent" [ngClass]="{'is-invalid':slpForm.get('boostPercent')?.invalid}">
+            </div>
+            <div class="col-4 mb-3">
+                <label for="farmCicleInput" class="form-label">Ciclo de coleta:</label>
+                <mat-icon
+                        mat-raised-button
+                        matTooltip="Tempo em segundos em que o ciclo de mineração ou recolhimento ocorre."
+                        matTooltipPosition="right">info_outline
+                    </mat-icon>
+                <input type="number" class="form-control" id="farmCicleInput" max="10" min="1" formControlName="farmCicle" [ngClass]="{'is-invalid':slpForm.get('farmCicle')?.invalid}">
+            </div>
+            <div class="col-3"></div>
+        </div> -->
+
+        <!-- <div class="row">
+            <div class="col-1"></div>
+            <div class="col-4 mb-3">
+                <label for="derbyInput" class="form-label">Derby:
+                    <mat-icon
+                        mat-raised-button
+                        matTooltip="Taxa de câmbio de Dark Steel por DRACO."
+                        matTooltipPosition="right">info_outline
+                    </mat-icon>
+                </label>
+                <input type="number" class="form-control" id="derbyInput" formControlName="derby" [ngClass]="{'is-invalid':slpForm.get('derby')?.invalid}">
+            </div>
+            <div class="col-4 mb-3">
+                <label for="farmCicleInput" class="form-label">Tempo de ciclo de coleta [seg]:</label>
+                <input type="number" class="form-control" id="farmCicleInput" max="10" min="1" formControlName="farmCicle" [ngClass]="{'is-invalid':farmForm.get('farmCicle')?.invalid}">
+            </div>
+            <div class="col-3"></div>
+        </div> -->
+      </form>
+</div>
+
+<app-axie-results [formValid]="slpForm.valid" [results]="results"></app-axie-results>
+
+

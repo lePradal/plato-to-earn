@@ -1,4 +1,4 @@
-interface Result {
+export interface Mir4Result {
     title: string,
     darkSteel: number,
     draco: number,

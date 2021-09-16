@@ -1,0 +1,20 @@
+.example-button {
+    margin-top: 16px;
+  }
+  
+.example-tooltip-red {
+  background: #b71c1c;
+}
+
+.mat-icon {
+  margin: 0;
+  padding-top: 5px;
+  vertical-align: bottom;
+  line-height: 0%;
+}
+
+.a-icon {
+  display: inline;
+}
+
+html, body :root {margin: 0; height: 100%; overflow: hidden}

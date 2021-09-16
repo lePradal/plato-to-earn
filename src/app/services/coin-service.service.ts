@@ -1,7 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { CoinQuote } from '../shared/models/coin-quote.response';
 import { urlConfig } from 'src/config/url.config';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { urlConfig } from 'src/config/url.config';
 })
 export class CoinService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) { }
 
   public getCoinQuote(): Observable<any> {
     return this.httpClient.get<any>(
@@ -19,4 +19,11 @@ export class CoinService {
       }
     );
   }
+
+  // public getHtml(){
+  //   return this.httpClient.get(`${urlConfig.COIN_MKT}`, {
+  //     observe: 'body',
+  //     responseType: 'text',
+  //   });
+  // }
 }

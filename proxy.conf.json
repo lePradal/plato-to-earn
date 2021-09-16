@@ -1,0 +1,20 @@
+{
+  "/economia-api": {
+    "target": "https://economia.awesomeapi.com.br",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/economia-api": ""
+    }
+  },
+  "/coin-mkt": {
+    "target": "https://coinmarketcap.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/coin-mkt": ""
+    }
+  }
+}

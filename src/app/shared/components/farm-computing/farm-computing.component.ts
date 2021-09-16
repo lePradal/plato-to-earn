@@ -5,6 +5,7 @@ import { startWith, switchMap } from 'rxjs/operators';
 import { CoinService } from 'src/app/services/coin-service.service';
 import { mines } from 'src/config/mines.config';
 import { TooltipPosition } from '@angular/material/tooltip';
+import { Mir4Result } from '../../models/mir4.results';
 
 @Component({
   selector: 'app-farm-computing',
@@ -36,7 +37,7 @@ export class FarmComputingComponent implements OnInit, OnDestroy {
 
   public dolarQuoteOberservable: Observable<number>;
 
-  public results: Result[] = [];
+  public results: Mir4Result[] = [];
 
   constructor(
     private coinService: CoinService,
@@ -83,7 +84,6 @@ export class FarmComputingComponent implements OnInit, OnDestroy {
         this.calculate();
       },      
       next: (response) => {
-        console.log('http');
         this.farmForm.patchValue({dolarQuote: response.USDBRL.ask});
 
         this.calculate();

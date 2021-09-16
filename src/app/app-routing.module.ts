@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { AxieComponent } from './shared/components/axie/axie.component';
+import { FarmComputingComponent } from './shared/components/farm-computing/farm-computing.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'farm', component: FarmComputingComponent,  },
+  { path: 'axie', component: AxieComponent, },
+  { path: '', redirectTo: '/farm', pathMatch: 'full' },
+  { path: '**', redirectTo: 'farm' },
+  ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

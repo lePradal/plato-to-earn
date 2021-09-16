@@ -1,19 +1,23 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSpinnerModule } from "ngx-spinner";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { AxieResultsComponent } from './shared/components/axie-results/axie-results.component';
+import { AxieComponent } from './shared/components/axie/axie.component';
 import { DrawerComponent } from './shared/components/drawer/drawer.component';
 import { FarmComputingComponent } from './shared/components/farm-computing/farm-computing.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { Mir4ResultsComponent } from './shared/components/mir4results/mir4results.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatIconModule } from '@angular/material/icon';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ResultsComponent } from './shared/components/results/results.component';
+import { TabsComponent } from './shared/components/tabs/tabs.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,10 @@ import { ResultsComponent } from './shared/components/results/results.component'
     FooterComponent,
     SidebarComponent,
     FarmComputingComponent,
-    ResultsComponent,
+    Mir4ResultsComponent,
+    TabsComponent,
+    AxieComponent,
+    AxieResultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +42,7 @@ import { ResultsComponent } from './shared/components/results/results.component'
     MatTooltipModule,
     MatIconModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

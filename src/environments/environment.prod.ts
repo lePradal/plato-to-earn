@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  economiaApi: 'https://economia.awesomeapi.com.br/json/last',
 };
