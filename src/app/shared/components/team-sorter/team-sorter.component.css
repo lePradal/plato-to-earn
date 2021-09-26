@@ -1,0 +1,8 @@
+.btn {
+    width: 100%;
+    margin-top: 10px;
+    border: solid #6e42c1 2px;
+    background-color: #6e42c1;
+    color: white;
+    font: bold;
+}

@@ -1,0 +1,66 @@
+<div class="container mt-5">
+    <form [formGroup]="controlForm">
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-5 mb-3">
+                <label for="numberOfTeamsInput" class="form-label">Número de times:</label>
+                <input type="number" class="form-control"
+                id="numberOfTeamsInput" max="20" min="0" formControlName="numberOfTeams"
+                [ngClass]="{'is-invalid':controlForm.get('numberOfTeams')?.invalid}">
+            </div>
+            <div class="col-5 mb-3">
+                <label for="playersForTeamInput" class="form-label">Jogadores por time:</label>
+                <input type="number" class="form-control"
+                id="playersForTeamInput" max="20" min="0" formControlName="playersForTeam"
+                [ngClass]="{'is-invalid':controlForm.get('playersForTeam')?.invalid}">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 mb-3">
+                <label for="numberOfTeamsInput" class="form-label">Nomes dos jogadores:</label>
+                <textarea type="text" class="form-control"
+                id="text" formControlName="text" [rows]="rows"
+                pattern="[^' ']+"
+                [ngClass]="{'is-invalid':controlForm.get('text')?.invalid}"></textarea>
+            </div>
+            <!-- <div class="col-5 mb-3">
+                <label for="playersForTeamInput" class="form-label">Jogadores por time:</label>
+                <input type="number" class="form-control"
+                id="playersForTeamInput" max="20" min="0" formControlName="playersForTeam"
+                [ngClass]="{'is-invalid':controlForm.get('playersForTeam')?.invalid}">
+            </div> -->
+        </div>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 mb-3">
+                <button #sort [disabled]="controlForm.invalid || !suficientPlayers ||  !playersNamesIsValid()" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#resultModal" (click)="shuffle.click()">Sortear</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modalLabel"><strong>Resultado</strong></h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div *ngFor="let team of teams; let i = index">
+            <h3><strong>Time {{i + 1}}</strong></h3>
+            <p *ngFor="let player of team">{{player}}</p>
+            <hr *ngIf="i != teams.length - 1">
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button #shuffle type="submit" class="btn btn-outline-danger" (click)="shufflePlayers()" >Sortear novamente</button>
+        </div>
+      </div>
+    </div>
+  </div>

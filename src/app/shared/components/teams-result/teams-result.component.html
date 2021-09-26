@@ -1,0 +1,22 @@
+<div class="modal fade" [id]="id" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modalLabel">
+              {{ title }}
+          </h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div *ngFor="let team of teams; let i = index">
+            <h3><strong>Time {{i + 1}}</strong></h3>
+            <p *ngFor="let player of team">{{player}}</p>
+            <hr *ngIf="i != teams.length - 1">
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button #shuffle type="submit" class="btn btn-outline-danger" (click)="shufflePlayers()" > {{ submitBtnText }}</button>
+        </div>
+      </div>
+    </div>
+  </div>

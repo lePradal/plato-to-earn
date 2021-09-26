@@ -18,6 +18,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { Mir4ResultsComponent } from './shared/components/mir4results/mir4results.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { TabsComponent } from './shared/components/tabs/tabs.component';
+import { TeamSorterComponent } from './shared/components/team-sorter/team-sorter.component';
+import { TeamsResultComponent } from './shared/components/teams-result/teams-result.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { TabsComponent } from './shared/components/tabs/tabs.component';
     TabsComponent,
     AxieComponent,
     AxieResultsComponent,
+    TeamSorterComponent,
+    TeamsResultComponent,
   ],
   imports: [
     BrowserModule,
